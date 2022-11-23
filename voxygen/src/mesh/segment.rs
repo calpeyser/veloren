@@ -199,7 +199,21 @@ where
             0.0
         }
     };
-    let get_glow = |_flat: &mut _, _pos: Vec3<i32>| 0.0;
+
+    let get_glow = move |flat: &mut _, pos: Vec3<i32>| {
+        let cell = flat_get(flat, pos);
+        match cell {
+            Cell::Filled(cell_data) => {
+                if cell_data.is_glowy() {
+                    1.0
+                } else {
+                    0.0
+                }
+            }
+            Cell::Empty => 0.0
+        }
+    };
+
     let get_color = move |flat: &mut _, pos: Vec3<i32>| {
         flat_get(flat, pos).get_color().unwrap_or_else(Rgb::zero)
     };

@@ -25,6 +25,8 @@ impl CellData {
     }
 
     pub fn is_hollow(&self) -> bool { self.attr.get() & HOLLOW != 0 }
+
+    pub fn is_glowy(&self) -> bool { self.attr.get() & GLOWY != 0 }
 }
 
 impl Default for CellData {
